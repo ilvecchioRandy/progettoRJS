@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      json: {"a" : "b"},
+      json: "",
     }
     // this.update = this.update.bind(this);
     this.fetching = this.fetching.bind(this);
@@ -14,16 +14,14 @@ class App extends React.Component {
 
   fetching(){
     fetch('https://pokeapi.co/api/v2/pokedex/1/')
-    .then(function(response){
+    .then((response) => {
       return response.json();
     })
-    .then(function(myJson){
-      let x ={"a": "b"}
+    .then((myJson) =>{
+      this.setState({
+        json: JSON.stringify(myJson)
+      });
     })
-    this.setState({
-      json: x
-    })
-    
   }
 
   // update(){
