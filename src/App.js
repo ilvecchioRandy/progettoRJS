@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import $ from 'jquery';
 import pokeball from './poke.png'
 
@@ -124,6 +123,7 @@ class App extends React.Component {
         <div id="lista">
         <img id="pokeball" src={pokeball} alt="pokeball"></img>
         <div id="pokeD">POK&Eacute;DEX</div>
+        <input type="text" id="ricerca"/>
           <ol>
             <hr />
             {
