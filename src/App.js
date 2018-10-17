@@ -37,8 +37,8 @@ class App extends React.Component {
         let x = {
           "types": myJson.types[0].type.name
         }
-        if( myJson.types.length === 2){
-          x.types += ' - '+myJson.types[1].type.name
+        if (myJson.types.length === 2) {
+          x.types += ' - ' + myJson.types[1].type.name
         }
         this.setState({
           jsonDescr: x
@@ -53,10 +53,9 @@ class App extends React.Component {
         let z;
         let i;
         vet = myJson.flavor_text_entries;
-        
-        for(i = 0;i < vet.length; i++){
-          console.log(myJson.flavor_text_entries[i].language.name)
-          if(myJson.flavor_text_entries[i].language.name === "en"){
+
+        for (i = 0; i < vet.length; i++) {
+          if (myJson.flavor_text_entries[i].language.name === "en") {
             z = myJson.flavor_text_entries[i].flavor_text;
             i = vet.length;
           }
@@ -68,27 +67,28 @@ class App extends React.Component {
           jsonFlavor: y
         })
       })
-    fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png')
-    .then
+    this.setState({
+      jsonSprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + index + ".png"
+    })
   }
 
   render() {
     return (
       <div id="container">
         <div id="info">
-          <ul style = {{position: 'fixed'}}>
-            <li><img src={this.state.jsonSprites.sprite} alt="sas"></img></li>
-            <li>Type: {this.state.jsonDescr.types} </li>
-            <li>Description: {this.state.jsonFlavor.flavor}</li>      
-          </ul>
+          <div id="sprite"> <img id="img" src={this.state.jsonSprites} alt="" /> </div>
+            <div id="type"> {this.state.jsonDescr.types} </div>
+            <div id="description">Description: {this.state.jsonFlavor.flavor}</div>
         </div>
-      <ul>
-        {
-            this.state.json.pokemon_entries.map((pokemon, index) =>
-            <li key={index + 1} onClick={() => { this.showDescription(index + 1) }}>{pokemon.pokemon_species.name.toUpperCase()}</li>
-          )
-        }
-      </ul>
+        <div id="lista">
+          <ol>
+            {
+              this.state.json.pokemon_entries.map((pokemon, index) =>
+                <li key={index + 1} onClick={() => { this.showDescription(index + 1) }}>{pokemon.pokemon_species.name.toUpperCase()}</li>
+              )
+            }
+          </ol>
+        </div>
       </div>
     )
   }

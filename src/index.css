@@ -13,5 +13,42 @@ code {
     monospace;
 }
 #info{
+  position: absolute;
   margin-left: 40%;
+  border: 1pt solid black;
+  height: 100vh;
+  width: 59%;
+}
+
+#lista{
+  position: absolute;
+  border: 1pt solid black;
+  height: 100vh;
+  overflow-y: scroll;
+  width: 40%;
+  font-family: 'Abel', sans-serif;
+}
+
+#sprite{
+  width: 91%;
+  height: 40%;
+  border: 31pt solid red;
+  background-color: coral;
+}
+#img{
+  width: 200px;
+  height: 200px;
+  margin-left: 39%;
+  margin-top: 3%;
+}
+#type{
+  width: 100%;
+  height: 5%;
+  border: 1pt solid blue;
+  text-align: center;
+  background-color: coral;
+}
+#description{
+  background-color: lightgray;
+  height: 45%;
 }
