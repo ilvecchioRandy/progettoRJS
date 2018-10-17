@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import $ from 'jquery';
 
 class App extends React.Component {
 
@@ -15,7 +16,6 @@ class App extends React.Component {
       jsonSprites: [],
       currentSelect: ""
     }
-
   };
   componentDidMount() {
     fetch('https://pokeapi.co/api/v2/pokedex/1/')
@@ -30,14 +30,29 @@ class App extends React.Component {
   }
 
   seleziona(index){
-    document.getElementById("li" + index).style.backgroundColor = "gold";
-    if(this.state.currentSelect !== "") document.getElementById(this.state.currentSelect).style.backgroundColor = "";
+    $("#img").hide()
+    if(document.getElementById("li" + index).style.backgroundColor === "gold"){
+      document.getElementById("li" + index).style.backgroundColor = "gold";
+    }
+    else{
+      document.getElementById("li" + index).style.backgroundColor = "gold";
+    $("#li" + index).css({fontSize: "16pt"});
+    if(this.state.currentSelect !== ""){
+      $('#' + this.state.currentSelect).css({fontSize: "15pt"});
+      document.getElementById(this.state.currentSelect).style.backgroundColor = "";
+    } 
+    }
+    
     this.setState({
       currentSelect: "li" + index
     })
+    
   }
 
   showDescription(index) {
+    this.setState({
+      jsonSprites: ""
+    })
     fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/')
       .then((response) => {
         return response.json();
@@ -64,6 +79,7 @@ class App extends React.Component {
         return response.json()
       })
       .then((myJson) => {
+        $("#img").fadeIn("slow")
         let vet = []
         let z;
         let i;
@@ -86,6 +102,17 @@ class App extends React.Component {
       jsonSprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + index + ".png"
     })
   }
+  highlight(index){
+    if(document.getElementById("li" + index).style.backgroundColor !== "gold"){
+      $("#li" + index).css("backgroundColor" , "rgb(253, 90, 31)");
+    }
+  }
+  dehighlight(index){
+    if(document.getElementById("li" + index).style.backgroundColor !== "gold"){
+      $("#li" + index).css("backgroundColor" , "coral");
+    }
+    
+  }
 
   render() {
     return (
@@ -101,7 +128,9 @@ class App extends React.Component {
           <ol>
             {
               this.state.json.pokemon_entries.map((pokemon, index) =>
-                <span><li id = {"li" + index} key={index + 1} onClick={() => { this.showDescription(index + 1); this.seleziona(index) }}><span id="sp">{index + 1}. {pokemon.pokemon_species.name.toUpperCase()}</span></li><hr></hr></span>
+                <span><li id = {"li" + index} key={index + 1} onMouseOver = {() =>{ this.highlight(index) }} onMouseOut = {() =>{this.dehighlight(index)}} 
+                onClick={() => { this.showDescription(index + 1); this.seleziona(index) }}>
+                <span id="sp">{index + 1}. {pokemon.pokemon_species.name.toUpperCase()}</span></li><hr></hr></span>
               )
             }
           </ol>

@@ -53,6 +53,7 @@ code {
   height: 200px;
   margin-left: 39%;
   margin-top: 3%;
+  display: none;
 }
 #type{
   width: 100%;
