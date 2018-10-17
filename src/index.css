@@ -63,6 +63,7 @@ code {
   width: 100%;
   height: 5%;
   background-color: coral; 
+  text-align: center;
 }
 #type span{
   margin-top: 10px;
@@ -70,6 +71,14 @@ code {
   position: absolute;
   width: 100%;
   text-align: center;
+}
+#type div{
+  background-image: url("./types.png");
+  height: 70%;
+  width: 7%;
+  display: inline-block;
+  margin-top: 0.8%;
+  background-size: 300px;
 }
 #description{
   background-color: coral;
@@ -81,9 +90,9 @@ code {
 }
 #ty{
   color: white;
-  /* padding-left: 50.1%; */
   width: 100%;
   text-align: center;
+
 }
 #de{
   color: white;
