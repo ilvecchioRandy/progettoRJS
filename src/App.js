@@ -39,6 +39,12 @@ class App extends React.Component {
         }
         if (myJson.types.length === 2) {
           x.types += ' - ' + myJson.types[1].type.name
+          document.getElementById("type").style.paddingLeft = "48%";
+          document.getElementById("type").style.textAlign = "left";
+        }
+        else{
+          document.getElementById("type").style.paddingLeft = "0%";
+          document.getElementById("type").style.textAlign = "center";
         }
         this.setState({
           jsonDescr: x
@@ -77,8 +83,10 @@ class App extends React.Component {
       <div id="container">
         <div id="info">
           <div id="sprite"> <img id="img" src={this.state.jsonSprites} alt="" /> </div>
-            <div id="type"> {this.state.jsonDescr.types} </div>
-            <div id="description">Description: {this.state.jsonFlavor.flavor}</div>
+            <div id="ty">type:</div>
+            <div id="type"><span>{this.state.jsonDescr.types}</span> </div>
+            <div id="de">description:</div>
+            <div id="description">{this.state.jsonFlavor.flavor}</div>
         </div>
         <div id="lista">
           <ol>

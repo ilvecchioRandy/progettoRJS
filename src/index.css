@@ -6,18 +6,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+#app{
+  font-family: 'Abel', sans-serif;
+  background-color: black;
+  height: 100vh;
+}
 #info{
   position: absolute;
-  margin-left: 40%;
-  border: 1pt solid black;
+  margin-left: 41%;
   height: 100vh;
   width: 59%;
+  border-left: 1pt solid white;
 }
 
 #lista{
@@ -26,11 +38,11 @@ code {
   height: 100vh;
   overflow-y: scroll;
   width: 40%;
-  font-family: 'Abel', sans-serif;
+  background-color: coral;
 }
 
 #sprite{
-  width: 91%;
+  width: 92%;
   height: 40%;
   border: 31pt solid red;
   background-color: coral;
@@ -44,11 +56,26 @@ code {
 #type{
   width: 100%;
   height: 5%;
-  border: 1pt solid blue;
-  text-align: center;
   background-color: coral;
 }
+#type span{
+  margin-top: 0.7%;
+  position: absolute;
+}
 #description{
-  background-color: lightgray;
-  height: 45%;
+  background-color: coral;
+  height: 44%;
+  border: 1pt solid black;
+  text-align: center;
+  padding-top: 5px;
+}
+#ty{
+  color: white;
+  padding-left: 50.1%;
+  width: 100%;
+}
+#de{
+  color: white;
+  padding-left: 48%;
+  width: 100%;
 }
