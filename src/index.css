@@ -63,9 +63,11 @@ code {
 #type span{
   margin-top: 0.7%;
   position: absolute;
+  font-size: 14pt;
 }
 #description{
   background-color: coral;
+  font-size: 14pt;
   height: 44%;
   border: 1pt solid black;
   text-align: center;

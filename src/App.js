@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   seleziona(index){
-    $("#img").hide()
+    $("#img").css({display: "none"});
     if(document.getElementById("li" + index).style.backgroundColor === "gold"){
       document.getElementById("li" + index).style.backgroundColor = "gold";
     }
@@ -50,9 +50,24 @@ class App extends React.Component {
   }
 
   showDescription(index) {
+    // fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png')
+    // .then((response) =>{
+    //   return response
+    // })
+    // .then((myJson) => {
+    //   console.log(myJson)
+    //   this.setState({
+    //     jsonSprites: myJson.url
+    //   })
+    //   $("#img").fadeIn()
+    // })
     this.setState({
-      jsonSprites: ""
+      jsonSprites: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png'
     })
+    // $("#img").load(function(){
+    //   // alert()
+    // })
+
     fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/')
       .then((response) => {
         return response.json();
@@ -63,12 +78,12 @@ class App extends React.Component {
         }
         if (myJson.types.length === 2) {
           x.types += ' - ' + myJson.types[1].type.name
-          document.getElementById("type").style.paddingLeft = "48%";
+          document.getElementById("type").style.paddingLeft = "47%";
           document.getElementById("type").style.textAlign = "left";
         }
         else{
-          document.getElementById("type").style.paddingLeft = "0%";
-          document.getElementById("type").style.textAlign = "center";
+          document.getElementById("type").style.paddingLeft = "48.9%";
+          document.getElementById("type").style.textAlign = "left";
         }
         this.setState({
           jsonDescr: x
@@ -79,7 +94,6 @@ class App extends React.Component {
         return response.json()
       })
       .then((myJson) => {
-        $("#img").fadeIn("slow")
         let vet = []
         let z;
         let i;
@@ -98,9 +112,6 @@ class App extends React.Component {
           jsonFlavor: y
         })
       })
-    this.setState({
-      jsonSprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + index + ".png"
-    })
   }
   highlight(index){
     if(document.getElementById("li" + index).style.backgroundColor !== "gold"){
@@ -118,7 +129,7 @@ class App extends React.Component {
     return (
       <div id="container">
         <div id="info">
-          <div id="sprite"> <img id="img" src={this.state.jsonSprites} alt="" /> </div>
+          <div id="sprite"> <img id="img" src={this.state.jsonSprites} alt="" onLoad={()=>{$("img").fadeIn()}} /> </div>
             <div id="ty">type:</div>
             <div id="type"><span>{this.state.jsonDescr.types}</span> </div>
             <div id="de">description:</div>
