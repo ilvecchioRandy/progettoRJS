@@ -107,7 +107,21 @@ class App extends React.Component {
     if(document.getElementById("li" + index).style.backgroundColor !== "gold"){
       $("#li" + index).css("backgroundColor" , "coral");
     }
+  }
+  onChangeText(value){
+    let i;
+    let vet = this.state.json.pokemon_entries;
+    if(value.length > 2){
+      for(i = 0; i < vet.length; i++){
+        if(this.state.json.pokemon_entries[i].pokemon_species.name.includes(value)){
+          
+        }
+      }
+    }
     
+  }
+  search(event){
+    event.preventDefault();
   }
 
   render() {
@@ -121,9 +135,6 @@ class App extends React.Component {
             <div id="description">{this.state.jsonFlavor.flavor}</div>
         </div>
         <div id="lista">
-        <img id="pokeball" src={pokeball} alt="pokeball"></img>
-        <div id="pokeD">POK&Eacute;DEX</div>
-        <input type="text" id="ricerca"/>
           <ol>
             <hr />
             {
@@ -134,6 +145,12 @@ class App extends React.Component {
               )
             }
           </ol>
+        </div>
+        <div id="header">
+        <img id="pokeball" src={pokeball} alt="pokeball"></img>
+        <div id="pokeD">POK&Eacute;DEX</div>
+        <div id="searchBar"><form id="myForm" onSubmit = {(event) => this.search(event)}>Search a Pok&eacute;mon:
+        <input type="text" id="ricerca" onChange = {(event) => this.onChangeText(event.target.value)}/></form></div>
         </div>
       </div>
     )

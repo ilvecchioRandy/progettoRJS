@@ -86,7 +86,7 @@ code {
 ol{
   padding-left: 0px;
   clear:left;
-  margin-top: 30px;
+  padding-top: 65px;
 }
 li{
   height: 6vh;
@@ -100,21 +100,32 @@ hr{
   margin: 0;
 }
 #pokeball{
-  animation: App-logo-spin infinite 8s linear;
-  margin-top: 5px;
+  animation: Pokedex-logo-spin infinite 7s linear;
   width: 70px;
   height: 70px;
-  float: left; 
+  float:left;
 }
 #pokeD{
-  margin-top: 25px;
+  position: absolute;
+  top: 25px;
   padding-left: 77px;
   font-size: 17pt;
 }
-#ricerca{
-  
+#header{
+  margin: 0;
+  border-bottom: 1pt solid black;
+  padding-left: 5px;
+  padding-top: 5px;
+  position: fixed;
+  width: 38.6%;
+  height: 11%;
+  background-color: coral;
 }
-
+#myForm{
+  position: absolute;
+  left: 210px;
+  top: 29px;
+}
 @keyframes Pokedex-logo-spin {
   from {
     transform: rotate(0deg);
