@@ -85,6 +85,8 @@ code {
 }
 ol{
   padding-left: 0px;
+  clear:left;
+  margin-top: 30px;
 }
 li{
   height: 6vh;
@@ -96,4 +98,25 @@ li{
 }
 hr{
   margin: 0;
+}
+#pokeball{
+  animation: App-logo-spin infinite 8s linear;
+  margin-top: 5px;
+  width: 70px;
+  height: 70px;
+  float: left; 
+}
+#pokeD{
+  margin-top: 25px;
+  padding-left: 77px;
+  font-size: 17pt;
+}
+
+@keyframes Pokedex-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

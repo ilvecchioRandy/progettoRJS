@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import $ from 'jquery';
+import pokeball from './poke.png'
 
 class App extends React.Component {
 
@@ -30,11 +31,11 @@ class App extends React.Component {
   }
 
   seleziona(index){
-    $("#img").css({display: "none"});
     if(document.getElementById("li" + index).style.backgroundColor === "gold"){
       document.getElementById("li" + index).style.backgroundColor = "gold";
     }
     else{
+      $("#img").css({display: "none"})
       document.getElementById("li" + index).style.backgroundColor = "gold";
     $("#li" + index).css({fontSize: "16pt"});
     if(this.state.currentSelect !== ""){
@@ -50,24 +51,9 @@ class App extends React.Component {
   }
 
   showDescription(index) {
-    // fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png')
-    // .then((response) =>{
-    //   return response
-    // })
-    // .then((myJson) => {
-    //   console.log(myJson)
-    //   this.setState({
-    //     jsonSprites: myJson.url
-    //   })
-    //   $("#img").fadeIn()
-    // })
     this.setState({
       jsonSprites: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png'
     })
-    // $("#img").load(function(){
-    //   // alert()
-    // })
-
     fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/')
       .then((response) => {
         return response.json();
@@ -136,10 +122,13 @@ class App extends React.Component {
             <div id="description">{this.state.jsonFlavor.flavor}</div>
         </div>
         <div id="lista">
+        <img id="pokeball" src={pokeball} alt="pokeball"></img>
+        <div id="pokeD">POK&Eacute;DEX</div>
           <ol>
+            <hr />
             {
               this.state.json.pokemon_entries.map((pokemon, index) =>
-                <span><li id = {"li" + index} key={index + 1} onMouseOver = {() =>{ this.highlight(index) }} onMouseOut = {() =>{this.dehighlight(index)}} 
+                <span key={index + 1}><li id = {"li" + index} onMouseOver = {() =>{ this.highlight(index) }} onMouseOut = {() =>{this.dehighlight(index)}} 
                 onClick={() => { this.showDescription(index + 1); this.seleziona(index) }}>
                 <span id="sp">{index + 1}. {pokemon.pokemon_species.name.toUpperCase()}</span></li><hr></hr></span>
               )
