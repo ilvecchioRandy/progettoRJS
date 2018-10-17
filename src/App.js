@@ -13,6 +13,7 @@ class App extends React.Component {
       jsonDescr: [],
       jsonFlavor: [],
       jsonSprites: [],
+      currentSelect: ""
     }
 
   };
@@ -26,6 +27,14 @@ class App extends React.Component {
           json: myJson
         });
       })
+  }
+
+  seleziona(index){
+    document.getElementById("li" + index).style.backgroundColor = "gold";
+    if(this.state.currentSelect !== "") document.getElementById(this.state.currentSelect).style.backgroundColor = "";
+    this.setState({
+      currentSelect: "li" + index
+    })
   }
 
   showDescription(index) {
@@ -92,7 +101,7 @@ class App extends React.Component {
           <ol>
             {
               this.state.json.pokemon_entries.map((pokemon, index) =>
-                <li key={index + 1} onClick={() => { this.showDescription(index + 1) }}>{pokemon.pokemon_species.name.toUpperCase()}</li>
+                <span><li id = {"li" + index} key={index + 1} onClick={() => { this.showDescription(index + 1); this.seleziona(index) }}><span id="sp">{index + 1}. {pokemon.pokemon_species.name.toUpperCase()}</span></li><hr></hr></span>
               )
             }
           </ol>

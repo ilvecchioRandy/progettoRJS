@@ -38,6 +38,7 @@ code {
   height: 100vh;
   overflow-y: scroll;
   width: 40%;
+  font-size: 15pt;
   background-color: coral;
 }
 
@@ -78,4 +79,18 @@ code {
   color: white;
   padding-left: 48%;
   width: 100%;
+}
+ol{
+  padding-left: 0px;
+}
+li{
+  height: 6vh;
+}
+#sp{
+  padding-left: 5px;
+  position: absolute;
+  margin-top: 8.5px;
+}
+hr{
+  margin: 0;
 }
