@@ -81,7 +81,7 @@ code {
   background-size: 300px;
 }
 #description{
-  background-color: coral;
+  background-color: #ff3838;
   font-size: 14pt;
   height: 44%;
   border: 1pt solid black;
@@ -104,8 +104,15 @@ ol{
   clear:left;
   padding-top: 89px;
 }
-li{
+ol li{
   height: 6vh;
+}
+ul{
+  padding: 0;
+  list-style-type: none;
+}
+ul li{
+  padding-top: 20px;
 }
 #sp{
   padding-left: 5px;
@@ -147,6 +154,54 @@ hr{
 #searchBar{
   margin-left: 50%;
   margin-top: 5%;
+}
+#flavor{
+  border: 2pt solid black;
+  margin-left: 30px;
+  width: 500px;
+  background-color: coral;
+  height: 300px;
+  margin-top: 4%;
+  float: left;
+}
+#head{
+  width: 500px;
+  height: 40px;
+  background-color:black;
+  color: white;
+  border-bottom: 1pt solid black;
+  padding-top: 16px;
+  font-size: 15pt;
+}
+#fl{
+  padding-top: 65px;
+  width: 450px;
+  text-align: center;
+  margin: auto;
+}
+#mis{
+  border: 2pt solid black;
+  margin-left: 30px;
+  width: 500px;
+  background-color: coral;
+  height: 300px;
+  margin-top: 4%;
+  float: left;
+}
+#head2{
+  width: 500px;
+  height: 40px;
+  background-color:black;
+  color: white;
+  border-bottom: 1pt solid black;
+  padding-top: 16px;
+  font-size: 15pt;
+}
+#miscellanea{
+  padding-top: 25px;
+  width: 450px;
+  text-align: center;
+  margin: auto;
 }
 
 @keyframes Pokedex-logo-spin {

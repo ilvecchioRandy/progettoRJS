@@ -14,13 +14,13 @@ class App extends React.Component {
       },
       jsonDescr: [
         {
-          type:{
-            name:"none"
+          type: {
+            name: "none"
           }
         },
         {
-          type:{
-            name:"none"
+          type: {
+            name: "none"
           }
         }
       ],
@@ -29,64 +29,69 @@ class App extends React.Component {
       SpriteName: "",
       currentSelect: "",
       typeArray: {
-        "bug" : {
+        "bug": {
           backgroundPosition: "-13.5px -10px",
         },
-        "dark" : {
+        "dark": {
           backgroundPosition: "-110.5px -10px",
         },
-        "dragon" : {
+        "dragon": {
           backgroundPosition: "-207.5px -10px",
         },
-        "electric" : {
+        "electric": {
           backgroundPosition: "-13.5px -60px",
         },
-        "fairy" : {
+        "fairy": {
           backgroundPosition: "-110.5px -60px",
         },
-        "fighting" : {
+        "fighting": {
           backgroundPosition: "-207.5px -60px",
         },
-        "fire" : {
+        "fire": {
           backgroundPosition: "-13.5px -108px",
         },
-        "flying" : {
+        "flying": {
           backgroundPosition: "-110.5px -108px",
         },
-        "ghost" : {
+        "ghost": {
           backgroundPosition: "-207px -108px",
         },
-        "grass" : {
+        "grass": {
           backgroundPosition: "-13.5px -159px",
         },
-        "ground" : {
+        "ground": {
           backgroundPosition: "-110.5px -159px",
         },
-        "ice" : {
+        "ice": {
           backgroundPosition: "-207.5px -159px",
         },
-        "normal" : {
+        "normal": {
           backgroundPosition: "-13.5px -209px",
         },
-        "poison" : {
+        "poison": {
           backgroundPosition: "-110.5px -209px",
         },
-        "bupsychic" : {
+        "psychic": {
           backgroundPosition: "-207.5px -209px",
         },
-        "rock" : {
+        "rock": {
           backgroundPosition: "-13.5px -259px",
         },
-        "steel" : {
+        "steel": {
           backgroundPosition: "-110.5px -259px",
         },
-        "water" : {
+        "water": {
           backgroundPosition: "-207.5px -259px",
         },
-        "none" : {
+        "none": {
           display: "none",
         },
-      }
+      },
+      jsonTraits: {
+          height: "",
+          weight: "",
+          genus: ""
+        } 
     }
   };
   componentDidMount() {
@@ -124,32 +129,35 @@ class App extends React.Component {
   showDescription(index) {
     this.setState({
       jsonSprites: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + index + '.png',
-      SpriteName: this.state.json.pokemon_entries[index-1].pokemon_species.name
+      SpriteName: this.state.json.pokemon_entries[index - 1].pokemon_species.name
     })
     fetch('https://pokeapi.co/api/v2/pokemon/' + index + '/')
       .then((response) => {
         return response.json();
       })
       .then((myJson) => {
-        let x = 
+        let x =
           [
             {
-              type:{
+              type: {
                 name: myJson.types[0].type.name
               }
             },
             {
-              type:{
-                name:"none"
+              type: {
+                name: "none"
               }
             }
-          ]   
-        if (myJson.types.length === 2) x[1].type.name = myJson.types[1].type.name
+          ];
+        let y = this.state.jsonTraits;
+        if (myJson.types.length === 2) x[1].type.name = myJson.types[1].type.name;
+        y.height = myJson.height/10 + " m";
+        y.weight = myJson.weight/10 + " kg";
+        console.log(y);
         this.setState({
-          jsonDescr:  x
+          jsonDescr: x,
+          jsonTratis: y
         });
-        console.log("-----------------")
-        console.log(this.state.jsonDescr);
       })
     fetch('https://pokeapi.co/api/v2/pokemon-species/' + index + '/')
       .then((response) => {
@@ -157,21 +165,34 @@ class App extends React.Component {
       })
       .then((myJson) => {
         let vet = []
+        let vet2 = [];
         let z;
         let i;
+        let z2;
+        let i2;
         vet = myJson.flavor_text_entries;
-
+        vet2 = myJson.genera;
+        console.log(vet2)
         for (i = 0; i < vet.length; i++) {
           if (myJson.flavor_text_entries[i].language.name === "en") {
             z = myJson.flavor_text_entries[i].flavor_text;
             i = vet.length;
           }
         }
+        for (i2 = 0; i2 < vet2.length; i2++) {
+          if (myJson.genera[i2].language.name === "en") {
+            z2 = myJson.genera[i2].genus;
+            i2 = vet.length;
+          }
+        }
+        let x = this.state.jsonTraits;
+        x.genus = z2;
         let y = {
           "flavor": z
         }
         this.setState({
-          jsonFlavor: y
+          jsonFlavor: y,
+          jsonTraits: x
         })
       })
   }
@@ -204,14 +225,17 @@ class App extends React.Component {
         <div id="info">
           <div id="sprite"><div>{this.state.SpriteName.toUpperCase()}</div> <img id="img" src={this.state.jsonSprites} alt="" onLoad={() => { $("img").fadeIn() }} /> </div>
           <div id="ty">type:</div>
-          {/* <div id="type"><span>{this.state.jsonDescr.types}</span> </div> */
-        }
           <div id="type"> <div id="type1" style={this.state.typeArray[this.state.jsonDescr[0].type.name]}></div> <div id="type2" style={this.state.typeArray[this.state.jsonDescr[1].type.name]}></div> </div>
-          <div id="de">description:</div>
-          <div id="description">{this.state.jsonFlavor.flavor}</div>
+          <div id="de">info:</div>
+          <div id="description"><div id="flavor"><div id="head">description:</div><div id="fl">{this.state.jsonFlavor.flavor}</div></div>
+          <div id="mis"><div id="head2">traits:</div><div id="miscellanea">
+          <div id="abilities"></div>
+          <div id="genus"></div>
+          <div id="measures"></div>
+          </div></div></div>
         </div>
         <div id="lista">
-          <ol>
+          <ol id="list">
             <hr />
             {
               this.state.json.pokemon_entries.map((pokemon, index) =>
@@ -223,8 +247,10 @@ class App extends React.Component {
           </ol>
         </div>
         <div id="header">
-          <img id="pokeball" src={pokeball} alt="pokeball"></img>
-          <div id="pokeD">POK&Eacute;DEX</div>
+          <div title="scroll to the top" onClick={() => { $("#lista").animate({ scrollTop: 0 + "px" }, "fast") }}>
+            <img id="pokeball" src={pokeball} alt="pokeball"></img>
+            <div id="pokeD">POK&Eacute;DEX</div>
+          </div>
           <div id="searchBar">Search a Pok&eacute;mon: &nbsp;
           <input type="text" id="ricerca" onChange={(event) => this.onChangeText(event.target.value)} />
           </div>
