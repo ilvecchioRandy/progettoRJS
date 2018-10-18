@@ -88,10 +88,11 @@ class App extends React.Component {
         },
       },
       jsonTraits: {
-          height: "",
-          weight: "",
-          genus: ""
-        } 
+        height: "",
+        weight: "",
+        genus: "",
+        abilities: ""
+      }
     }
   };
   componentDidMount() {
@@ -150,9 +151,14 @@ class App extends React.Component {
             }
           ];
         let y = this.state.jsonTraits;
+        let y2 = [];
         if (myJson.types.length === 2) x[1].type.name = myJson.types[1].type.name;
-        y.height = myJson.height/10 + " m";
-        y.weight = myJson.weight/10 + " kg";
+        for(let i = 0; i< myJson.abilities.length;i++) {
+          y2.push(myJson.abilities[i].ability.name)
+        }
+        y.height = myJson.height / 10 + " m";
+        y.weight = myJson.weight / 10 + " kg";
+        y.abilities = y2.join(" , ");
         console.log(y);
         this.setState({
           jsonDescr: x,
@@ -228,11 +234,21 @@ class App extends React.Component {
           <div id="type"> <div id="type1" style={this.state.typeArray[this.state.jsonDescr[0].type.name]}></div> <div id="type2" style={this.state.typeArray[this.state.jsonDescr[1].type.name]}></div> </div>
           <div id="de">info:</div>
           <div id="description"><div id="flavor"><div id="head">description:</div><div id="fl">{this.state.jsonFlavor.flavor}</div></div>
-          <div id="mis"><div id="head2">traits:</div><div id="miscellanea">
-          <div id="abilities"></div>
-          <div id="genus"></div>
-          <div id="measures"></div>
-          </div></div></div>
+            <div id="mis"><div id="head2">traits:</div><div id="miscellanea">
+              <div id="abilities"><div id="headA">abilities:</div><div id="contentA">{this.state.jsonTraits.abilities}</div></div>
+              <div id="altro">
+                <div id="genus"><div id="headG">genus:</div><div id="contentG">{this.state.jsonTraits.genus}</div></div>
+                <div id="measures">
+                  <div id="headM">measures:</div>
+                  <div id="contentM">
+                    <table>
+                      <tr><td>weight: </td><td><span>{this.state.jsonTraits.weight}</span></td></tr>
+                      <tr><td>height: </td><td><span>{this.state.jsonTraits.height}</span></td></tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div></div></div>
         </div>
         <div id="lista">
           <ol id="list">

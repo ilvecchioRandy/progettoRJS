@@ -14,6 +14,14 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+@keyframes Pokedex-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -108,11 +116,9 @@ ol li{
   height: 6vh;
 }
 ul{
+  margin: 0;
   padding: 0;
   list-style-type: none;
-}
-ul li{
-  padding-top: 20px;
 }
 #sp{
   padding-left: 5px;
@@ -203,12 +209,90 @@ hr{
   text-align: center;
   margin: auto;
 }
-
-@keyframes Pokedex-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#altro{
+  width:100%;
+  height: 100%;
+  margin-top: 3%;
+}
+#abilities{
+  border: 2pt solid black;
+  margin: auto;
+  width: 100%;
+  background-color: coral;
+  height: 80px;
+}
+#headA{
+  width: 100%;
+  height: 30%;
+  background-color:black;
+  color: white;
+  border-bottom: 1pt solid black;
+  padding-top: 5px;
+  font-size: 14pt;
+}
+#contentA{
+  padding-top: 2.7%;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+#genus{
+  border: 2pt solid black;
+  margin: auto;
+  margin-left: 0.9%;
+  width: 45%;
+  background-color: coral;
+  height: 100px;
+  float: left;
+}
+#headG{
+  width: 100%;
+  height: 30%;
+  background-color:black;
+  color: white;
+  border-bottom: 1pt solid black;
+  padding-top: 5px;
+  font-size: 14pt;
+}
+#contentG{
+  padding-top: 19px;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+#measures{
+  border: 2pt solid black;
+  margin: auto;
+  width: 45%;
+  background-color: coral;
+  height: 100px;
+  float: left;
+  margin-left: 7%;
+}
+#headM{
+  width: 100%;
+  height: 30%;
+  background-color:black;
+  color: white;
+  border-bottom: 1pt solid black;
+  padding-top: 5px;
+  font-size: 14pt;
+}
+#contentM{
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  padding-top: 2px;
+}
+table{
+  width: 100%
+}
+table tr{
+  width: 100%
+}
+table td{
+  width: 50%
+}
+table td span{
+  letter-spacing: 2px;
 }
